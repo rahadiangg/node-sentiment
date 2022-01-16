@@ -20,6 +20,9 @@ RUN npm install
 # set env
 ENV NODE_ENV development
 
+# set timezone Jakarta
+RUN apk add tzdata && cp /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
+
 EXPOSE 8080
 
 CMD [ "dumb-init", "npm", "start" ]
