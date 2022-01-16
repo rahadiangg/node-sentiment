@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <p>5 Data sentiment analisis terkahir</p>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Text</th>
+                            <th scope="col">Tokens</th>
+                            <th scope="col">Positive Text</th>
+                            <th scope="col">Negative Text</th>
+                            <th scope="col">Comparative</th>
+                            <th scope="col">Sentiment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% var count=0 %> 
+                        <% if(typeof data != 'undefined' && data) { %> 
+                        <% data.forEach(data => { %> 
+                        <tr>
+                            <% count++ %> 
+                            <th scope="row"><%= count %> </th>
+                            <td><%= data.text %> </td>
+                            <td><%= data.tokens %> </td>
+                            <td><%= data.positive_text %> </td>
+                            <td><%= data.negative_text %> </td>
+                            <td><%= parseFloat(data.comparative).toFixed(2) %> </td>
+                            <td>
+                                <% if(data.score > 0) { %>
+                                <a href="#" class="badge badge-primary">Positif</a>
+                                <% } else if(data.score < 0) { %> 
+                                <a href="#" class="badge badge-danger">Negatif</a>
+                                <% } else { %>
+                                <a href="#" class="badge badge-secondary">Netral</a>
+                                <% } %>  
+                            </td>
+                        </tr>
+                        <% }) %> 
+                        <% } %> 
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

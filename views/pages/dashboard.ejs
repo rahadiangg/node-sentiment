@@ -1,0 +1,121 @@
+<% if(typeof success_upload != 'undefined'){ %> 
+<div class="row">
+    <div class="col-md-12">
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>Yey, Berhasil upload!</strong> File kamu lagi di proses di background, tenang gak bakal lama kok hehe.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+</div>
+<% } %> 
+<div class="row stats-row">
+    <div class="col-lg-4 col-md-12">
+        <div class="card card-transparent stats-card">
+            <div class="card-body">
+                <div class="stats-info">
+                    <h5 class="card-title"><%= (typeof data != 'undefined') ? data.negatif : "0" %> <span class="stats-change stats-change-danger">Negatif Sentiment</span></h5>
+                    <p class="stats-text">Total data sentiment negatif</p>
+                </div>
+                <div class="stats-icon change-danger">
+                    <i class="material-icons">sentiment_very_dissatisfied</i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-12">
+        <div class="card card-transparent stats-card">
+            <div class="card-body">
+                <div class="stats-info">
+                    <h5 class="card-title"><%= (typeof data != 'undefined') ? data.netral : "0" %><span class="stats-change stats-change-secondary">Netral Sentiment</span></h5>
+                    <p class="stats-text">Total data sentiment netral</p>
+                </div>
+                <div class="stats-icon change-secondary">
+                    <i class="material-icons">sentiment_satisfied</i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-12">
+        <div class="card card-transparent stats-card">
+            <div class="card-body">
+                <div class="stats-info">
+                    <h5 class="card-title"><%= (typeof data != 'undefined') ? data.positif : "0" %><span class="stats-change stats-change-success">Positif Sentiment</span></h5>
+                    <p class="stats-text">Total data sentiment positif</p>
+                </div>
+                <div class="stats-icon change-success">
+                    <i class="material-icons">sentiment_satisfied_alt</i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-4">
+        <div class="card top-products">
+            <div class="card-body">
+                <h5 class="card-title">5 Batch Bulk Sentiment Terkahir</h5>
+                <div class="top-products-list">
+                    <% if(typeof data != 'undefined'){ %> 
+                    <% data.batchs.forEach(data => { %> 
+                    <div class="product-item">
+                        <h5><%= data.name %> </h5>
+                        <span><%= data.createdAt %> </span>
+                        <% if(data.status == 'selesai') { %> 
+                        <i class="material-icons product-item-status product-item-success">check_circle</i>
+                        <% } else { %> 
+                        <i class="material-icons product-item-status product-item-warning">sync</i>
+                        <% } %> 
+                    </div>
+                    <% }) %> 
+                    <% } %> 
+                    <!-- <div class="product-item">
+                        <h5>Lime - Task Managment Dashboard</h5>
+                        <span>1,876 downloads</span>
+                        <i class="material-icons product-item-status product-item-warning">sync</i>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <p>5 Data sentiment analisis terkahir</p>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Text</th>
+                            <th scope="col">Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% var count=0 %> 
+                        <% if(typeof data != 'undefined') { %> 
+                        <% data.sentiments.forEach(data => { %> 
+                        <tr>
+                            <% count++ %> 
+                            <th scope="row"><%= count %> </th>
+                            <td><%= data.text %> </td>
+                            <td>
+                                <% if(data.score > 0) { %>
+                                <a href="#" class="badge badge-primary">Positif</a>
+                                <% } else if(data.score < 0) { %> 
+                                <a href="#" class="badge badge-danger">Negatif</a>
+                                <% } else { %>
+                                <a href="#" class="badge badge-secondary">Netral</a>
+                                <% } %>  
+                            </td>
+                        </tr>
+                        <% }) %> 
+                        <% } %> 
+                    </tbody>
+                </table>     
+            </div>
+        </div>
+    </div>
+</div>
