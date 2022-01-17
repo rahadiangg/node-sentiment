@@ -8,10 +8,10 @@ services:
     volumes:
       - "./:/usr/src/app"
     # restart: on-failure
+    depends_on:
+      - redis
   redis:
     image: redis:6.2.6-alpine
     container_name: redis_node_sentimet
     ports:
       - 6379:6379
-    depends_on:
-      - node_sentiment
