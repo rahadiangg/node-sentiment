@@ -4,23 +4,20 @@ services:
     build: 
       context: .
     container_name: node_sentiment
-    # network_mode: host
+    network_mode: host
     volumes:
       - "./:/usr/src/app"
     restart: on-failure
     depends_on:
       - redis
-    ports:
-      - 8080:8080
-    networks:
-      - node_sentiment
+    # ports:
+    #   - 8080:8080
+    # networks:
+    #   - node_sentiment
   redis:
     image: redis:6.2.6-alpine
     container_name: redis_node_sentimet
     ports:
       - 6379:6379
-    networks:
-      - node_sentiment
-networks:
-  node_sentiment:
-    driver: bridge
+    # networks:
+    #   - node_sentiment

@@ -12,7 +12,7 @@ COPY package*.json ./
 
 # install model only production
 # RUN npm install --only=production
-RUN npm install && npm install -g sequelize
+RUN npm install
 
 # copy & change owner non root user
 # COPY --chown=node:node . .

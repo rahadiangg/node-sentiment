@@ -2,10 +2,10 @@
   "name": "nodejs-sentiment",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "sequelize db:migrate && node app.js"
+    "start": "./node_modules/sequelize-cli/lib/sequelize db:migrate && node app.js"
   },
   "keywords": [],
   "author": "",
