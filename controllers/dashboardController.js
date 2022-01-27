@@ -5,10 +5,17 @@ const translate =require("translate-google");
 const xlsx =require("xlsx");
 const models = require('../models/index.js');
 const {Op} = require('sequelize');
-
+const dotenv = require('dotenv');
+dotenv.config();
 
 const sentimentQueue = new BeeQueue('sentiment', {
-    removeOnSuccess: true
+    removeOnSuccess: true,
+    redis: {
+        host: process.env.REDIS_HOST,
+        port: process.env.REDIS_PORT,
+        db: 0,
+        options: {},
+    }
 });
 
 sentimentQueue.process(async (job, done) => {
