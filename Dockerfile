@@ -8,15 +8,14 @@ RUN apk add dumb-init
 WORKDIR /usr/src/app
 
 # copy package.json & package-lock.json for install modules
-# COPY package*.json ./
-COPY . .
+COPY package*.json ./
 
 # install model only production
 # RUN npm install --only=production
 RUN npm install
 
 # copy & change owner non root user
-# COPY --chown=node:node . .
+COPY --chown=node:node . .
 
 # set env
 ENV NODE_ENV development
