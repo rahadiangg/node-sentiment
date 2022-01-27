@@ -8,7 +8,8 @@ RUN apk add dumb-init
 WORKDIR /usr/src/app
 
 # copy package.json & package-lock.json for install modules
-COPY package*.json ./
+# COPY package*.json ./
+COPY . .
 
 # install model only production
 # RUN npm install --only=production

@@ -5,8 +5,8 @@ services:
       context: .
     container_name: node_sentiment
     # network_mode: host
-    volumes:
-      - ./:/usr/src/app
+    # volumes:
+    #   - ./:/usr/src/app
     restart: on-failure
     depends_on:
       - redis
