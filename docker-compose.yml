@@ -23,7 +23,7 @@ services:
     networks:
       - node_sentiment
   mysql:
-    image: mysql:8.0
+    image: mariadb:10.7
     container_name: mysql_node_sentiment
     environment:
       - MYSQL_ROOT_PASSWORD=secret
