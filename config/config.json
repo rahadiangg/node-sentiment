@@ -1,9 +1,9 @@
 {
   "development": {
     "username": "root",
-    "password": "mysql-local",
-    "database": "nodejs_sentiment",
-    "host": "127.0.0.1",
+    "password": "secret",
+    "database": "node_sentiment",
+    "host": "mysql_node_sentiment",
     "dialect": "mysql"
   },
   "test": {
