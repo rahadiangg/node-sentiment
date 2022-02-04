@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <p>Text Sentiment Analysis</p>
+            </div>
+            <div class="card-body">
+                <form action="text-sentiment" method="POST">
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Sentiment text</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="text_sentiment"><%= (typeof text_sentiment != 'undefined' && text_sentiment) ? text_sentiment : '' %></textarea>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+
+                <% if(typeof hasil != 'undefined' && hasil) { %>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Tokens</th>
+                            <th scope="col">Positive Text</th>
+                            <th scope="col">Negative Text</th>
+                            <th scope="col">Comparative</th>
+                            <th scope="col">Sentiment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><%= hasil.tokens %> </td>
+                            <td><%= hasil.positive %> </td>
+                            <td><%= hasil.negative %> </td>
+                            <td><%= parseFloat(hasil.comparative).toFixed(2) %> </td>
+                            <td>
+                                <% if(hasil.score > 0) { %>
+                                <a href="#" class="badge badge-primary">Positif</a>
+                                <% } else if(hasil.score < 0) { %> 
+                                <a href="#" class="badge badge-danger">Negatif</a>
+                                <% } else { %>
+                                <a href="#" class="badge badge-secondary">Netral</a>
+                                <% } %>  
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <% } %> 
+            </div>
+        </div>
+    </div>
+</div>
