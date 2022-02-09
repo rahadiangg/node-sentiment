@@ -37,7 +37,7 @@ sentimentQueue.process(async (job, done) => {
             res.text = d[0];
 
             // save data sentiment ke database
-            models.sentiments.create({
+            await models.sentiments.create({
                 text: res.text,
                 batch_id: job.data.batch_id,
                 tokens: res.tokens,
