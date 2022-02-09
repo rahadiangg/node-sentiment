@@ -43,9 +43,9 @@ exports.listBatch = async (req, res) => {
             }
         });
 
-        data[count].persentase_positive = (positive / total) * 100;
-        data[count].persentase_negative = (negatif / total) * 100;
-        data[count].persentase_netral = (netral / total) * 100;
+        data[count].persentase_positive = ((positive / total) * 100).toFixed(2);
+        data[count].persentase_negative = ((negatif / total) * 100).toFixed(2);
+        data[count].persentase_netral = ((netral / total) * 100).toFixed(2);
 
         count++;
     }
