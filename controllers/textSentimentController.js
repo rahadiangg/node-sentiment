@@ -12,8 +12,15 @@ exports.postTextSentiment = async (req, res) => {
     try {
         const sentiment = new Sentiment();
         
+        const text = req.body.text_sentiment
+        .toLowerCase()
+        .replace(/(?:https?|http):\/\/[\n\S]+/g, '')
+        .replace(/\B@[a-z0-9_-]+/gi, '')
+        .replace(/[^a-zA-Z ]/g, '')
+        .replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '')
+
         // translate text ke bahasa inggris
-        const trans = await translate(req.body.text_sentiment, {to: 'en'});
+        const trans = await translate(text, {to: 'en'});
         
         // analisis sentiment
         const hasil = sentiment.analyze(trans);

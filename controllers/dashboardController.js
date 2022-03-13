@@ -27,18 +27,26 @@ sentimentQueue.process(async (job, done) => {
         const dataExcel = xlsx.utils.sheet_to_json(reader.Sheets[reader.SheetNames[0]], {header: 1});
                 
         for (let d of dataExcel) {
+
+            let text = d[0]
+            text = text.toLowerCase()
+            .replace(/(?:https?|http):\/\/[\n\S]+/g, '')
+            .replace(/\B@[a-z0-9_-]+/gi, '')
+            .replace(/[^a-zA-Z ]/g, '')
+            .replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '')
+            
             // translate text ke bahasa inggris
-            const trans = await translate(d[0], {to: 'en'});
+            const trans = await translate(text, {to: 'en'});
 
             // analisis sentiment
             const res = sentiment.analyze(trans);
 
             // inject text asli
-            res.text = d[0];
+            // res.text = d[0];
 
             // save data sentiment ke database
             await models.sentiments.create({
-                text: res.text,
+                text: text,
                 batch_id: job.data.batch_id,
                 tokens: res.tokens,
                 positive_text: res.positive,
