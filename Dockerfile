@@ -15,7 +15,7 @@ COPY package*.json ./
 RUN npm install
 
 # copy & change owner non root user
-COPY --chown=node:node . .
+# COPY --chown=node:node . .
 
 # set env
 ENV NODE_ENV development
