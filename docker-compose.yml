@@ -7,6 +7,7 @@ services:
     # network_mode: host
     volumes:
       - ./:/usr/src/app
+      - /usr/src/app/node_modules
     restart: on-failure
     depends_on:
       - redis
